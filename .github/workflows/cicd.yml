@@ -12,6 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Log GitHub Actions Secrets
+        env:
+          SECRET_AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}          
+        run: |
+          echo "Username: $SECRET_AZURE_CREDENTIALS"   
+          
       - name: Checkout repository
         uses: actions/checkout@v4
 
