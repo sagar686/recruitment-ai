@@ -18,8 +18,8 @@ jobs:
           SECRET_OPENAI: ${{ secrets.OPENAI_API_KEY}}          
 
         run: |
-          echo $SECRET_AZURE_CREDENTIALS 
-          echo "$SECRET_OPENAI" 
+          echo "AZ $SECRET_AZURE_CREDENTIALS"
+          echo "OPEN AI $SECRET_OPENAI" 
 
           
       - name: Checkout repository
