@@ -20,6 +20,6 @@ jobs:
           git config --global credential.helper store
           echo "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" > ~/.git-credentials
           # Pull the latest code from the repository
-          git pull origin main
+          git pull origin develop
           ls          
 
