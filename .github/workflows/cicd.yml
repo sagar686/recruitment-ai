@@ -20,6 +20,10 @@ jobs:
           git config --global credential.helper store
           echo "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" > ~/.git-credentials
           # Pull the latest code from the repository
-          git pull origin develop
-          ls          
+          cd deploy/
+          rm -rf recruitment-ai
+          git clone -b develop https://github.com/sagar686/recruitment-ai
+          cd recruitment-ai
+          sudo docker compose build
+          sudo docker compose up
 
