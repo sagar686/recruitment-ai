@@ -1,0 +1,58 @@
+version: "1"
+services:
+  llm_service:
+    container_name: llm_service
+    image: recruitmentai/llm_service
+    build:
+      context: ./llm_service
+      dockerfile: Dockerfile
+    volumes:
+      - ./llm_service/logs:/app/logs
+      - ./llm_service/candidate_cv:/app/candidate_cv
+
+  frontend_service:
+    container_name: frontend
+    image: recruitmentai/frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: npm start
+  
+
+  backend_service:
+    container_name: backend
+    image: recruitmentai/backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env.local  
+    restart: on-failure
+    volumes:
+      - ./backend/logs:/app/logs
+    depends_on:
+      - mongo_db
+
+  mongo_db:
+    container_name: mongo_db
+    image: mongo:4.4
+    volumes:
+      - mongo_data:/data/db/
+    restart: always
+    ports:
+      - 27017:27017
+
+  nginx_service:
+    container_name: nginx
+    image: nginx:1.25.1-alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/develop.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/log:/var/log/nginx/
+    depends_on:
+      - backend_service
+      - frontend_service
+
+volumes:
+  mongo_data:
