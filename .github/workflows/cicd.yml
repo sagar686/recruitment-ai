@@ -14,9 +14,13 @@ jobs:
     steps:
       - name: Log GitHub Actions Secrets
         env:
-          SECRET_AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}          
+          SECRET_AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS}}   
+          SECRET_OPENAI: ${{ secrets.OPENAI_API_KEY}}          
+
         run: |
-          echo "Username: $SECRET_AZURE_CREDENTIALS"   
+          echo $SECRET_AZURE_CREDENTIALS 
+          echo $SECRET_OPENAI  
+
           
       - name: Checkout repository
         uses: actions/checkout@v4
