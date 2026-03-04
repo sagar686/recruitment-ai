@@ -23,7 +23,7 @@ jobs:
           cd deploy/
           rm -rf recruitment-ai
           git clone -b develop https://github.com/sagar686/recruitment-ai
-          cd recruitment-ai
-          sudo docker compose build
-          sudo docker compose up
+          cd recruitment-ai/
+          docker compose build
+          docker compose up
 
