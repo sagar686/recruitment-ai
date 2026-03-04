@@ -19,7 +19,7 @@ jobs:
 
         run: |
           echo $SECRET_AZURE_CREDENTIALS 
-          echo $SECRET_OPENAI  
+          echo "$SECRET_OPENAI" 
 
           
       - name: Checkout repository
@@ -28,7 +28,7 @@ jobs:
       - name: Azure Login
         uses: azure/login@v2
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{secrets.AZURE_CREDENTIALS}}
 
       - name: Azure CLI script
         uses: azure/cli@v2
