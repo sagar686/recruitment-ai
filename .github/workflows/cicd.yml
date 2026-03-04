@@ -43,8 +43,7 @@ jobs:
             --ip ${{ secrets.VM_PUBLIC_IP }} \
             --local-user ${{ secrets.VM_USERNAME }} \
             --auth-type password \
-            --password ${{ secrets.VM_PASSWORD }} \
-            --command "echo 'Connected successfully!' && uname -a"   
-
+            --password ${{ secrets.VM_PASSWORD }}
+            
       - name: Run a one-line script
         run: echo Hello, world!
